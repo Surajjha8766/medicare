@@ -16,22 +16,22 @@
             <!-- Contact Form -->
             <div class="contact-form-container">
               <h2 class="section-title">Send Us a Message</h2>
-              <form class="contact-form">
+              <form class="contact-form" @submit.prevent="submitForm">
                 <div class="form-group">
                   <label for="name" class="form-label">Full Name</label>
-                  <input type="text" id="name" class="form-input" placeholder="John Doe">
+                  <input type="text" id="name" v-model="formData.name" class="form-input" placeholder="John Doe">
                 </div>
                 <div class="form-group">
                   <label for="email" class="form-label">Email Address</label>
-                  <input type="email" id="email" class="form-input" placeholder="john@example.com">
+                  <input type="email" id="email" v-model="formData.email" class="form-input" placeholder="john@example.com">
                 </div>
                 <div class="form-group">
                   <label for="phone" class="form-label">Phone Number</label>
-                  <input type="tel" id="phone" class="form-input" placeholder="+1 (555) 123-4567">
+                  <input type="tel" id="phone" v-model="formData.contact" class="form-input" placeholder="+1 (555) 123-4567">
                 </div>
                 <div class="form-group">
                   <label for="subject" class="form-label">Subject</label>
-                  <select id="subject" class="form-input">
+                  <select id="subject" class="form-input" v-model="formData.subject">
                     <option value="">Select a subject</option>
                     <option value="appointment">Appointment Inquiry</option>
                     <option value="billing">Billing Question</option>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="form-group">
                   <label for="message" class="form-label">Your Message</label>
-                  <textarea id="message" rows="5" class="form-input" placeholder="Type your message here..."></textarea>
+                  <textarea id="message" rows="5" v-model="formData.message" class="form-input" placeholder="Type your message here..."></textarea>
                 </div>
                 <button type="submit" class="submit-button">Send Message</button>
               </form>
@@ -127,7 +127,42 @@
   </div>
 </template>
 
-<script setup>
+<script>
+import axios from 'axios';
+
+export default{
+  data(){
+    return{
+      formData: {
+        name: '',
+        email: '',
+        contact: '',
+        subject: '',
+        message: '',
+      }
+    }
+  },
+
+  methods: {
+    async submitForm(){
+      try {
+        const response = await axios.post('http://localhost:5000/api/postData', this.formData);
+        console.log(response.data);
+        alert("Query Submitted");
+         this.formData = {
+      name: '',
+      email: '',
+      contact: '',
+      subject: '',
+      message: ''
+    };
+      } catch (error) {
+        console.log('Failed to submit query');
+        alert("Failed");
+      }
+    }
+  }
+}
 // Any necessary script logic can go here
 </script>
 

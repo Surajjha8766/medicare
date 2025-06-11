@@ -12,7 +12,7 @@
               <div class="h-8 w-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-semibold">
                 {{ userInitials }}
               </div>
-              <span class="font-medium">{{ userData?.names }}</span>
+              <span class="font-medium">{{ userData?.name}}</span>
             </div>
             
             <button 
@@ -84,6 +84,7 @@
   <script>
   import axios from 'axios';
   import { useAuthStore } from '@/stores/auth';
+  import { useRouter } from 'vue-router';
   
   export default { 
     setup() {
@@ -175,9 +176,18 @@
       },
       
       handleLogout() {
+        try{
         this.auth.logout();
         // Redirect to login page or home page
-        this.$router.push('/login');
+        const router = useRouter();
+        router.push('/');
+        }catch(error){
+           console.error('Logout failed:', error);
+                // Even if the API logout fails, we should clear local state
+                this.auth.logout();
+                const router = useRouter();
+                router.push('/');
+        }
       }
     },
   
