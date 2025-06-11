@@ -1,0 +1,1 @@
+export { default } from "file:///C:/Users/Administrator/medicare_plus/frontend/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"
