@@ -1,1 +1,1 @@
-export { default } from "file:///C:/Users/nitis/medicare/frontend/node_modules/@nuxt/vite-builder/dist/runtime/vite-node.mjs"
+export { default } from "file:///C:/Users/Administrator/medicare/frontend/node_modules/@nuxt/vite-builder/dist/runtime/vite-node.mjs"

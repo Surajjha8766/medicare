@@ -168,7 +168,53 @@ const userSignin = async (req, res) => {
           maxAge: 7 * 24 * 60 * 60 * 1000
         });
 
+      // Send Notification email user login
+      let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASSWORD,
+        }
+      });
+  
+      let mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: 'Welcome to Medicare Plus!',
+        html: `
+        <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: 0 auto;">
+          <div style="text-align: center; margin-bottom: 20px;">
+            <img src="https://example.com/logo.png" alt="Medicare Plus Logo" style="max-width: 200px;" />
+          </div>
+          <h2 style="color: #2E86C1;">Account Login Notification</h2>
+          <p style="font-size: 16px; line-height: 1.6;">
+            Hello Dear,
+          </p>
+          <p style="font-size: 16px; line-height: 1.6;">
+            We noticed a login to your Medicare Plus account associated with this email: <strong>${email}</strong>.
+          </p>
+          <p style="font-size: 16px; line-height: 1.6;">
+            If this was you, no further action is needed. However, <strong>if you did not initiate this login</strong>, please report it immediately by contacting our support team at <a href="mailto:support@medicareplus.com">support@medicareplus.com</a>.
+          </p>
+          <div style="margin-top: 30px; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
 
+          </div>
+          <p style="font-size: 14px; color: #999; margin-top: 30px;">
+            If you believe your account has been compromised, please take steps to secure it by changing your password immediately.
+          </p>
+        </div>
+        `
+        
+      };
+  
+      // Send email (don't wait for response)
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+          console.error('Error sending welcome email:', error);
+        } else {
+          console.log('Login email sent:', info.response);
+        }
+      });
       return res.status(200).json({
       success: true,
       message: "Login successful",
