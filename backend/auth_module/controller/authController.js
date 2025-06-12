@@ -71,7 +71,7 @@ const userSignup = async (req, res) => {
         html: `
         <div style="font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: 0 auto;">
           <div style="text-align: center; margin-bottom: 20px;">
-            <img src="https://example.com/logo.png" alt="Medicare Plus Logo" style="max-width: 200px;" />
+            <img src="https://www.flaticon.com/free-icon/mail_7286142?term=email&page=1&position=25&origin=search&related_id=7286142" alt="Medicare Plus Logo" style="max-width: 200px;" />
           </div>
           <h2 style="color: #2E86C1;">Welcome to Medicare Plus, ${name}!</h2>
           <p style="font-size: 16px; line-height: 1.6;">
