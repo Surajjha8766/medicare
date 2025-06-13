@@ -10,7 +10,7 @@ const nodemailer = require('nodemailer');
 // -----------------User Sign Up----------------------------
 const userSignup = async (req, res) => {
   try {
-    const { name, email, password, specialization, contact, userType } = req.body;
+    const { name, email, password, specialization, contact, userType, userStatus, paymentStatus } = req.body;
 
     //Validate kara
     if (!name || !email || !password || !contact || !userType) {
@@ -36,7 +36,9 @@ const userSignup = async (req, res) => {
       password: hashedpassword,
       specialization,
       contact: Number(contact),
-      userType
+      userType,
+      userStatus,
+      paymentStatus,
     });
 
     const saveUser = await newUser.save();

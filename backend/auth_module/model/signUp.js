@@ -25,7 +25,16 @@ const userSchema = new mongoose.Schema({
     type: String,
     enum: ['doctor', 'patient'], // Fixed typo
     required: true,
-  }
+  },
+
+  userStatus: {
+    type: String,
+    default: false,
+  },
+  paymentStatus: {
+    type: String,
+    default: false,
+  },
 });
 
 module.exports = mongoose.model("SignUp", userSchema);
