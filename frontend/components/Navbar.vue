@@ -16,6 +16,7 @@
           <NuxtLink to="/doctors" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Doctors</NuxtLink>
           <NuxtLink to="/about" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">About</NuxtLink>
           <NuxtLink to="/contact" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Contact</NuxtLink>
+          <NuxtLink to="/blogs" class="text-gray-600 hover:text-blue-600 font-medium transition-colors">Blogs</NuxtLink>
           <div class="flex space-x-4 ml-8">
             <button @click="openSignInModal" class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">Sign In</button>
             <button @click="openSignUpModal" class="px-6 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-medium">Sign Up</button>
@@ -41,6 +42,7 @@
         <NuxtLink to="/doctors" class="text-gray-600 hover:text-blue-600 font-medium py-2">Doctors</NuxtLink>
         <NuxtLink to="/about" class="text-gray-600 hover:text-blue-600 font-medium py-2">About</NuxtLink>
         <NuxtLink to="/contact" class="text-gray-600 hover:text-blue-600 font-medium py-2">Contact</NuxtLink>
+        <NuxtLink to="/blogs" class="text-gray-600 hover:text-blue-600 font-medium py-2">Blogs</NuxtLink>
         <div class="flex space-x-4 pt-2">
           <button @click="openSignInModal" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium flex-1">Sign In</button>
           <button @click="openSignUpModal" class="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors font-medium flex-1">Sign Up</button>

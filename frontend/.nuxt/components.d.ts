@@ -12,7 +12,9 @@ type HydrationStrategies = {
 }
 type LazyComponent<T> = (T & DefineComponent<HydrationStrategies, {}, {}, {}, {}, {}, {}, { hydrated: () => void }>)
 interface _GlobalComponents {
-      'Footer': typeof import("../components/Footer.vue")['default']
+      'BlogForm': typeof import("../components/BlogForm.vue")['default']
+    'BlogList': typeof import("../components/BlogList.vue")['default']
+    'Footer': typeof import("../components/Footer.vue")['default']
     'Navbar': typeof import("../components/Navbar.vue")['default']
     'Signin': typeof import("../components/signin.vue")['default']
     'Signup copy': typeof import("../components/signup copy.vue")['default']
@@ -41,7 +43,9 @@ interface _GlobalComponents {
     'Body': typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
     'NuxtIsland': typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']
     'NuxtRouteAnnouncer': IslandComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
-      'LazyFooter': LazyComponent<typeof import("../components/Footer.vue")['default']>
+      'LazyBlogForm': LazyComponent<typeof import("../components/BlogForm.vue")['default']>
+    'LazyBlogList': LazyComponent<typeof import("../components/BlogList.vue")['default']>
+    'LazyFooter': LazyComponent<typeof import("../components/Footer.vue")['default']>
     'LazyNavbar': LazyComponent<typeof import("../components/Navbar.vue")['default']>
     'LazySignin': LazyComponent<typeof import("../components/signin.vue")['default']>
     'LazySignup copy': LazyComponent<typeof import("../components/signup copy.vue")['default']>
@@ -76,6 +80,8 @@ declare module 'vue' {
   export interface GlobalComponents extends _GlobalComponents { }
 }
 
+export const BlogForm: typeof import("../components/BlogForm.vue")['default']
+export const BlogList: typeof import("../components/BlogList.vue")['default']
 export const Footer: typeof import("../components/Footer.vue")['default']
 export const Navbar: typeof import("../components/Navbar.vue")['default']
 export const Signin: typeof import("../components/signin.vue")['default']
@@ -105,6 +111,8 @@ export const Html: typeof import("../node_modules/nuxt/dist/head/runtime/compone
 export const Body: typeof import("../node_modules/nuxt/dist/head/runtime/components")['Body']
 export const NuxtIsland: typeof import("../node_modules/nuxt/dist/app/components/nuxt-island")['default']
 export const NuxtRouteAnnouncer: IslandComponent<typeof import("../node_modules/nuxt/dist/app/components/server-placeholder")['default']>
+export const LazyBlogForm: LazyComponent<typeof import("../components/BlogForm.vue")['default']>
+export const LazyBlogList: LazyComponent<typeof import("../components/BlogList.vue")['default']>
 export const LazyFooter: LazyComponent<typeof import("../components/Footer.vue")['default']>
 export const LazyNavbar: LazyComponent<typeof import("../components/Navbar.vue")['default']>
 export const LazySignin: LazyComponent<typeof import("../components/signin.vue")['default']>

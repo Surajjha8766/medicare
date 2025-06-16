@@ -1,13 +1,18 @@
+// stores/auth.js
+
+import { defineStore } from 'pinia';
+
 export const useAuthStore = defineStore('auth', {
   state: () => ({
     user: null,
-    token: null
+    token: null,
   }),
   getters: {
     hasUserDetails: (state) => state.user,
     isLoggedIn: (state) => !!state.token
   },
   actions: {
+
     setUser(user) {
       this.user = user;
       if (typeof window !== 'undefined') {
@@ -32,6 +37,18 @@ export const useAuthStore = defineStore('auth', {
       if (typeof window !== 'undefined') {
         localStorage.removeItem('user');
         localStorage.removeItem('token');
+        localStorage.removeItem('rememberMe');
+        sessionStorage.removeItem('sessionAuth');
+      }
+    },
+    initialize() {
+      this.loadFromLocalStorage();
+      
+      // Check session storage if not remembered
+      if (typeof window !== 'undefined' && 
+          localStorage.getItem('rememberMe') !== 'true' && 
+          !sessionStorage.getItem('sessionAuth')) {
+        this.clearAuth();
       }
     }
   }

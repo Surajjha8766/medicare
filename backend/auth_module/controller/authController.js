@@ -2,7 +2,7 @@
 const signUp = require("../model/signUp");
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const JWT_SECRET = 'THISISMEDICAREPLUS';
+const JWT_SECRET = process.env.JWT_SECRET;
 const otpMap = require('../../utils/otpStore');
 const nodemailer = require('nodemailer');
 
@@ -46,7 +46,7 @@ const userSignup = async (req, res) => {
    //JWT Token generate kiya
     const token = jwt.sign(
       { _id: saveUser._id, email: saveUser.email, userType: saveUser.userType },
-      JWT_SECRET,
+      process.env.JWT_SECRET,
       { expiresIn: "7d" }
     );
 
@@ -157,7 +157,7 @@ const userSignin = async (req, res) => {
     //Token generate kiya
     const token = jwt.sign(
       { _id: user._id, email: user.email, userType: user.userType },
-      JWT_SECRET,
+      process.env.JWT_SECRET,
       { expiresIn: "7d" }
     );
 
@@ -336,7 +336,43 @@ const getUser = async (req,res) => {
  }
 };
 
+//------------------Login Admin----------------------------
+const  Adminlogin = async (req,res) => {
+  try{
+    const { email, password } = req.body;
 
+    if(email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD){
+      const token = jwt.sign(
+      {
+      email: process.env.ADMIN_EMAIL, 
+      role: 'admin'
+    }, process.env.JWT_SECRET, {expiresIn: '1h'} );
+
+      return res.status(200).json({success: true, message: "Login Successfull", token, user: {
+        email,
+        role: 'admin',
+        name: "Admin User"
+      }});
+    } 
+    
+    else{
+      return res.status(401).json({
+        success: false,
+        message: 'Invalid credentials'
+      });
+    }
+  } catch(error){
+    return res.status(500).json({
+      success: false,
+      message: 'Server error'
+    });
+  }
+};
+
+//------------------Logout Admin----------------------------
+const Adminlogout = (req,res) => {
+  return res.status(200).json({success: true, message: "Logged Out Successfully"})
+}
 
 module.exports = {
   userSignup,
@@ -344,5 +380,7 @@ module.exports = {
   getUser,
   sendOtp,
   verifyOtp,
+  Adminlogin,
+  Adminlogout,
 
 };

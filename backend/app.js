@@ -4,6 +4,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const userRoutes = require('./auth_module/routes/signupRoute');
 const contactRoute = require('./contact_module/route/contactRoute')
+const BlogRoute = require('./blogs_module/route/blogRoute')
 require('dotenv').config();
 
 const app = express();
@@ -17,6 +18,7 @@ app.use(express.json());
 
 app.use('/api/user', userRoutes);
 app.use('/api', contactRoute);
+app.use('/blog', BlogRoute);
 
 mongoose.connect('mongodb://localhost:27017/medicare_plus', {
   useNewUrlParser: true,

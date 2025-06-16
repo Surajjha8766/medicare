@@ -647,6 +647,12 @@ const _inlineRuntimeConfig = {
           "hideHeaderFooter": true
         }
       },
+      "/adminPanel": {
+        "ssr": false
+      },
+      "/login": {
+        "ssr": false
+      },
       "/_nuxt/builds/meta/**": {
         "headers": {
           "cache-control": "public, max-age=31536000, immutable"
@@ -659,7 +665,9 @@ const _inlineRuntimeConfig = {
       }
     }
   },
-  "public": {}
+  "public": {
+    "apiBase": "http://localhost:3000/api"
+  }
 };
 const envOptions = {
   prefix: "NITRO_",
