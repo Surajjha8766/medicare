@@ -4,7 +4,8 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const userRoutes = require('./auth_module/routes/signupRoute');
 const contactRoute = require('./contact_module/route/contactRoute')
-const BlogRoute = require('./blogs_module/route/blogRoute')
+const BlogRoute = require('./blogs_module/route/blogRoute');
+const connectDB = require('./config/db');
 require('dotenv').config();
 
 const app = express();
@@ -20,15 +21,8 @@ app.use('/api/user', userRoutes);
 app.use('/api', contactRoute);
 app.use('/blog', BlogRoute);
 
-mongoose.connect('mongodb://localhost:27017/medicare_plus', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-}).then(() => {
-  console.log('MongoDB connected');
-}).catch(err => {
-  console.error('MongoDB connection error:', err);
-});
 
+connectDB()
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

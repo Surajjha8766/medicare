@@ -28,11 +28,11 @@ const userSchema = new mongoose.Schema({
   },
 
   userStatus: {
-    type: String,
+    type: Boolean,
     default: false,
   },
   paymentStatus: {
-    type: String,
+    type: Boolean,
     default: false,
   },
 });
